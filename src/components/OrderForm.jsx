@@ -28,7 +28,7 @@ const OrderForm = ({ onOrderCreated }) => {
             if (onOrderCreated) onOrderCreated(); // Recargar lista
         } catch (error) {
             console.error(error);
-            setMessage({ type: 'danger', text: 'Error al crear la orden. Verifica los datos.' });
+            setMessage({ type: 'danger', text: 'Error al crear la orden. Verifica que el número de orden sea único' });
         }
     };
 

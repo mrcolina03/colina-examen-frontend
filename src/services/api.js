@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-// Al usar proxy inverso, no ponemos http://localhost:8080, sino la ruta relativa.
-// Nginx se encargará de redirigir esto al backend.
+// Usamos ruta relativa.
+// - En local: Vite redirige /api -> localhost:8080/api
+// - En Docker: Nginx redirige /api -> purchase-service:8080/api
 const api = axios.create({
-    baseURL: '/api/v1/purchase-orders',
+    baseURL: '/api/v1/purchase-orders', 
     headers: {
         'Content-Type': 'application/json',
     },
