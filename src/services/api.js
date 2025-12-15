@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// Usamos ruta relativa.
-// - En local: Vite redirige /api -> localhost:8080/api
-// - En Docker: Nginx redirige /api -> purchase-service:8080/api
+// IMPORTANTE: Debe ser ruta relativa.
+// Nginx interceptará "/api" y lo mandará al backend.
 const api = axios.create({
     baseURL: '/api/v1/purchase-orders', 
     headers: {

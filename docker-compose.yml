@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # 1. Base de Datos
+  mysqldb:
+    image: mysql:8.0
+    container_name: mysqldb
+    environment:
+      MYSQL_DATABASE: purchase_db
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306" # Mapeo al 3307 para evitar conflictos con MySQL local
+    networks:
+      - colina-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # 2. Backend (Microservicio Spring Boot)
+  purchase-service:
+    image: mrcolina/mrcolina_leccion2
+    container_name: purchase-service
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    ports:
+      - "8080:8080" # Expuesto para pruebas directas con Postman
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - SPRING_PROFILES_ACTIVE=prod
+      # La URL apunta al nombre del servicio 'mysqldb' dentro de la red Docker
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/purchase_db?serverTimezone=UTC
+    networks:
+      - colina-network
+
+  # 3. Frontend (React + Nginx)
+  frontend:
+    image: mrcolina/colina_examen_frontend
+    container_name: purchase-frontend
+    depends_on:
+      - purchase-service
+    ports:
+      - "3000:80" # Acceso desde el navegador por el puerto 3000
+    networks:
+      - colina-network
+
+networks:
+  colina-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

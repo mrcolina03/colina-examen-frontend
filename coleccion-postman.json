@@ -1,0 +1,445 @@
+{
+  "info": {
+    "_postman_id": "b8f5c3a1-1234-4567-8900-purchaseorder123",
+    "name": "Purchase Order Microservice",
+    "description": "Colección de pruebas para el microservicio de Purchase Orders (Spring Boot + MySQL).\nIncluye casos de éxito y validaciones de errores.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Creación (Ejemplos)",
+      "item": [
+        {
+          "name": "Crear Orden - ACHE Tools (USD / DRAFT)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"orderNumber\": \"PO-2025-001\",\n    \"supplierName\": \"ACHE Tools\",\n    \"status\": \"DRAFT\",\n    \"totalAmount\": 1500.50,\n    \"currency\": \"USD\",\n    \"expectedDeliveryDate\": \"2025-12-31\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Orden - Euro Supplies (EUR / SUBMITTED)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"orderNumber\": \"PO-2025-002\",\n    \"supplierName\": \"Euro Supplies GMBH\",\n    \"status\": \"SUBMITTED\",\n    \"totalAmount\": 450.00,\n    \"currency\": \"EUR\",\n    \"expectedDeliveryDate\": \"2025-11-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear Orden - Tech Corp (USD / APPROVED)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"orderNumber\": \"PO-2025-003\",\n    \"supplierName\": \"Tech Corp International\",\n    \"status\": \"APPROVED\",\n    \"totalAmount\": 9999.99,\n    \"currency\": \"USD\",\n    \"expectedDeliveryDate\": \"2026-01-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Consultas Generales",
+      "item": [
+        {
+          "name": "Obtener Todas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por ID (Ej: 1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Filtros",
+      "item": [
+        {
+          "name": "Filtro Texto (q=ache)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?q=ache",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "ache"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Status (APPROVED)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?status=APPROVED",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "APPROVED"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Status (DRAFT)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?status=DRAFT",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "DRAFT"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Moneda (USD)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?currency=USD",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "USD"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Moneda (EUR)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?currency=EUR",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "currency",
+                  "value": "EUR"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Monto (min 100 - max 2000)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?minTotal=100&maxTotal=2000",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "minTotal",
+                  "value": "100"
+                },
+                {
+                  "key": "maxTotal",
+                  "value": "2000"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtro Fechas (Rango Válido)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?from=2025-01-01T00:00:00&to=2025-12-31T23:59:59",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2025-01-01T00:00:00"
+                },
+                {
+                  "key": "to",
+                  "value": "2025-12-31T23:59:59"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Errores Esperados (Validaciones)",
+      "item": [
+        {
+          "name": "Error: Status Inválido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?status=ESTADO_INEXISTENTE",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ESTADO_INEXISTENTE"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Fechas Cruzadas (from > to)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?from=2026-01-01T00:00:00&to=2025-01-01T00:00:00",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2026-01-01T00:00:00"
+                },
+                {
+                  "key": "to",
+                  "value": "2025-01-01T00:00:00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Error: Monto Negativo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/purchase-orders?minTotal=-50",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "v1",
+                "purchase-orders"
+              ],
+              "query": [
+                {
+                  "key": "minTotal",
+                  "value": "-50"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
